@@ -5,8 +5,15 @@ from .forms import TodoForm
 # Create your views here.
 def home(request):
     todos = Todo.objects.all()
+    form = TodoForm()
+    # if(request.method == "POST"):
+    #     form = TodoForm(request.POST)
+    #     if(form.is_valid()):
+    #         form.save()
+    #         return redirect("home")   we handle this in home.html by adding action = "/add/"
     context = {
-        "todos":todos
+        "todos":todos,
+        "form":form
     }
     return render(request,"todo/home.html",context)
 

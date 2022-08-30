@@ -1,4 +1,9 @@
 {% extends "todo/base.html" %} {% block content %}
+<form action="/add/" method="POST">
+  <!-- formu doldurup gönderdiğimizde bulunduğu endpointe POST isteği atar -->
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" value="Add" />
+</form>
 <ul>
   {% for todo in todos %}
   <li>{{todo}}</li>

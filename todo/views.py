@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Todo
 # Create your views here.
 def home(request):
-    return HttpResponse("<h1>hello</h1>")
+    todos = Todo.objects.all()
+    context = {
+        "todos":todos
+    }
+    return render(request,"todo/home.html",context)

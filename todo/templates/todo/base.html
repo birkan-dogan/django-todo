@@ -29,6 +29,15 @@
         >
       </div>
     </nav>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "warning" %}
+                <div id="warning" class="message">{{ message }}</div>
+            {% else %}
+                <div id="success" class="message">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     <div class="d-flex justify-content-evenly mt-5 flex-column flex-lg-row">
       {% block content %} {% endblock content %}
     </div>
@@ -37,5 +46,6 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
+    <script src="{% static 'todo/js/timeout.js' %}"></script>
   </body>
 </html>

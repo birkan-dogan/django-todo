@@ -1,7 +1,13 @@
 {% extends "todo/base.html" %} {% block content %}
-<h2>Todo Update</h2>
-<form action="" method="POST">
-  {% csrf_token %} {{form.as_p}}
-  <input type="submit" value="Update" />
-</form>
+<div class="col-lg-4 mx-auto p-0 shadow">
+  <h2 class="text-center text-primary">Todo Update</h2>
+  <div class="p-4 d-flex align-items-center justify-content-center">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="d-flex flex-column gap-1 fw-bold">{{form}}</div>
+      <hr />
+      <input type="submit" value="Update" class="btn btn-success w-100" />
+    </form>
+  </div>
+</div>
 {% endblock content %}

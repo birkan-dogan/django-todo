@@ -4,9 +4,50 @@
   {% csrf_token %} {{form.as_p}}
   <input type="submit" value="Add" />
 </form>
-<ul>
-  {% for todo in todos %}
-  <li>{{todo}}</li>
-  {% endfor %}
-</ul>
+<div class="text-center">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos%}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td class="text-left">{{todo.title}}</td>
+        <!-- {% if todo.status == 'C'%}
+        <td>✅</td>
+        {% elif todo.status == 'I'%}
+        <td>🚧</td>
+        {% elif todo.status == 'P'%}
+        <td>💤</td>
+        {%endif%} -->
+        <td>{{ todo.get_status_display }}</td>
+
+        <td>
+          <!-- {% if todo.priority == '1'%} 1️⃣ {%elif todo.priority == '2'%} 2️⃣
+          {%elif todo.priority == '3'%} 3️⃣ {%elif todo.priority == '4'%} 4️⃣
+          {%elif todo.priority == '5'%} 5️⃣ {%endif%} -->
+          {{ todo.get_priority_display }}
+        </td>
+
+        <td>
+          <a href="delete/{{todo.id}}" title="Delete" class="btn btn-danger"
+            >🗑️</a
+          >
+        </td>
+        <td>
+          <a href="/update/{{todo.id}}" class="btn btn-secondary">⚙️</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock content %}
